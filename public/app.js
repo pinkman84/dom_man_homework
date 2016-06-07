@@ -55,8 +55,6 @@ window.onload = function(){
 }
 
 
-
-
 var listOfQuotes = [
 {
   text: "Visual Basic is the way forward, I don't know why we are doing JavaScript.",
@@ -79,21 +77,37 @@ var listOfQuotes = [
 function main(){
   console.log('lets do this');
 
-    var button = document.getElementsByTagName('submit');
-    button.onlclick = handleClick;
 
-  var handleClick = function(){
+
+newQuote();
+quotesPoster(listOfQuotes)
+}
+
+var handleClick = function(){
     console.log('caliiick!');
-    var input = document.getElementsByTagName('blockquote');
-    var userQuote = input.value
-    appendQuote(userQuote);
+    var userQuote = input1.value;
+    var quoteBy = input2.value;
+    appendQuote(userQuote, quoteBy);
   }
 
-  var appendQuote = function(userQuote){
-    var li = document.createElement('li');
-    li.innertext = userQuote;
-    console.log(li);
-    document.getElementsByTagName('blockquote').appendChild(li);
+  var appendQuote = function(userQuote, quoteBy){
+    var quoteArticle = document.createElement('article');
+      quoteArticle.classList.add('quote');
+
+     var blockQuote = document.createElement('blockquote');
+      blockQuote.innerText = userQuote;
+
+      var cite = document.createElement('cite');
+        cite.innerText = (" " + quoteBy) 
+
+      blockQuote.appendChild(cite);
+
+      quoteArticle.appendChild(blockQuote);
+
+
+      var quotes = document.querySelector('#quotes');
+        quotes.appendChild(quoteArticle);
+
   }
 
 
@@ -105,59 +119,50 @@ function main(){
       var author = listOfQuotes[i].author;
       
       var quoteArticle = document.createElement('article');
-      quoteArticle.classList.add('quote');
+        quoteArticle.classList.add('quote');
 
-     var blockQuote = document.createElement('blockquote');
-          blockQuote.innerText = text
+      var blockQuote = document.createElement('blockquote');
+        blockQuote.innerText = text
 
-          var cite = document.createElement('cite');
-          cite.innerText = author
+      var cite = document.createElement('cite');
+        cite.innerText = author
 
-          blockQuote.appendChild(cite);
+      blockQuote.appendChild(cite);
 
-          quoteArticle.appendChild(blockQuote);
+      quoteArticle.appendChild(blockQuote);
 
-          var quotes = document.querySelector('#quotes');
-          quotes.appendChild(quoteArticle);
+      var quotes = document.querySelector('#quotes');
+        quotes.appendChild(quoteArticle);
         
     }
   }
- 
-
-quotesPoster(listOfQuotes)
-
-newQuote();
-
-}
-
-
 
 
 
 function newQuote(){
-
-
 var quoteArticle = document.createElement('article');
 quoteArticle.classList.add('quote');
-var input1 = document.createElement('input');
+
+ input1 = document.createElement('input');
   input1.type = 'text';
 
 var blockQuote = document.createElement('blockquote');
-blockQuote.innertext = input1
+  blockQuote.innertext = input1
 
-blockQuote.appendChild(input1)
+  blockQuote.appendChild(input1)
 
 
-var input2 = document.createElement('input');
+ input2 = document.createElement('input');
   input2.type = 'text';
 
-  var button2 = document.createElement('button');
+var button2 = document.createElement('button');
   button2.type = 'submit';
-  var t = document.createTextNode('Add Quote');
+  
+var t = document.createTextNode('Add Quote');
   button2.appendChild(t);
 
 var cite = document.createElement('cite');
-cite.innertext = input2
+  cite.innertext = input2
 
 cite.appendChild(input2)
 cite.appendChild(button2)
@@ -168,9 +173,9 @@ blockQuote.appendChild(cite);
 quoteArticle.appendChild(blockQuote);
 
 var quotes = document.querySelector('#quotes');
-quotes.appendChild(quoteArticle);
+  quotes.appendChild(quoteArticle);
 
-
+button2.onclick = handleClick
 
 }
 
